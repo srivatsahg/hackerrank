@@ -10,12 +10,40 @@ namespace InterviewSamples
     {
         static void Main(string[] args)
         {
+
+            //int[] arr = new[] { 10, 20, 20, 10, 10, 30, 50, 10, 20 };
+            int[] arr = new[] { 1, 2, 1, 2, 1, 3, 2 };
+
+            sockMerchant(arr);
+
             // The code provided will print ‘Hello World’ to the console.
             // Press Ctrl+F5 (or go to Debug > Start Without Debugging) to run your app.
             Console.WriteLine("Hello World!");
             Console.ReadKey();
 
-            // Go to http://aka.ms/dotnet-get-started-console to continue learning how to build a console app! 
+        }
+
+        private static void sockMerchant(int[] arr)
+        {
+            int pairCount = 0;
+
+            var query = arr.Distinct().ToList();
+
+            int possibleColors = query.Count;
+
+            int[] colorCount = new int[possibleColors];
+
+            foreach (var element in query)
+            {
+                var filtered = arr.Where(e => e == element).ToList().Count;
+                if(filtered >= 2)
+                {
+                    pairCount += (filtered / 2);
+                }
+            }
+
+            Console.WriteLine($"Total pairs : {pairCount}");
+
         }
     }
 }
